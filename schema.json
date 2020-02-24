@@ -1,0 +1,83 @@
+{
+    "definitions" : {
+        "dimensions" : {
+            "oneOf": [
+                {
+                    "type": "string",
+                    "pattern": "auto\\b"
+                },
+                {"type": "number"}
+            ]
+        },
+        "resizing_algorithm": {
+            "type": "string",
+            "pattern": "(RESIZE_NEAREST_NEIGHBOR\\b|RESIZE_BILINEAR\\b|RESIZE_BICUBIC\\b|RESIZE_HERMITE\\b|RESIZE_BEZIER\\b)"
+        },
+        "horizontal_alignment": {
+            "type": "string",
+            "pattern": "(HORIZONTAL_ALIGN_LEFT\\b|HORIZONTAL_ALIGN_CENTER\\b|HORIZONTAL_ALIGN_RIGHT\\b)"
+        },
+        "vertical_alignment": {
+            "type": "string",
+            "pattern": "(VERTICAL_ALIGN_TOP\\b|VERTICAL_ALIGN_MIDDLE\\b|VERTICAL_ALIGN_BOTTOM\\b)"
+        }
+    },
+    "properties": {
+        "resize" : {
+            "type": "object",
+            "properties": {
+                "width": {
+                    "$ref": "#/definitions/dimensions"
+                },
+                "height": {
+                    "$ref": "#/definitions/dimensions"
+                },
+                "mode": {
+                    "$ref": "#/definitions/resizing_algorithm"
+                }
+            },
+            "required" : ["width", "height"]
+        },
+        "contain": {
+            "type": "object",
+            "properties" : {
+                "width": {
+                    "$ref": "#/definitions/dimensions"
+                },
+                "height": {
+                    "$ref": "#/definitions/dimensions"
+                },
+                "valign": {
+                    "$ref": "#/definitions/vertical_alignment"
+                },
+                "halign": {
+                    "$ref": "#/definitions/horizontal_alignment"
+                },
+                "mode": {
+                    "$ref": "#/definitions/resizing_algorithm"
+                }
+            }
+        },
+        "cover": {
+            "type": "object",
+            "properties" : {
+                "width": {
+                    "$ref": "#/definitions/dimensions"
+                },
+                "height": {
+                    "$ref": "#/definitions/dimensions"
+                },
+                "valign": {
+                    "$ref": "#/definitions/vertical_alignment"
+                },
+                "halign": {
+                    "$ref": "#/definitions/horizontal_alignment"
+                },
+                "mode": {
+                    "$ref": "#/definitions/resizing_algorithm"
+                }
+            }
+        }
+    },
+    "additionalProperties": false
+}
