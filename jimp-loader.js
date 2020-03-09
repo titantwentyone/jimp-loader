@@ -7,7 +7,7 @@ const schema = require("./schema.json");
 module.exports = function(source)
 {
     const options = getOptions(this);
-    console.log(options);
+    // console.log(options);
 
     var cb = this.async();
     
@@ -171,7 +171,7 @@ function cover(options, image)
 
 function crop(options, image)
 {
-    console.log("cropping");
+    // console.log("cropping");
     if((options.x || options.x === 0) && (options.y || options.y === 0) && options.width && options.height)
     {
         image.crop(options.x, options.y, options.width, options.height);
@@ -182,7 +182,7 @@ function crop(options, image)
 
 function opacity(options, image)
 {
-    console.log("transparency");
+    // console.log("transparency");
     if(options.opacity || options.opacity === 0)
     {
         image.opacity(options.opacity);
@@ -193,7 +193,7 @@ function opacity(options, image)
 
 function fade(options, image)
 {
-    console.log("fading");
+    // console.log("fading");
     if(options.opacity || options.opacity === 0)
     {
         image.fade(options.opacity);
