@@ -77,6 +77,46 @@
                     "$ref": "#/definitions/resizing_algorithm"
                 }
             }
+        },
+        "crop": {
+            "type": "object",
+            "properties": {
+                "x": {
+                    "type": "number"
+                },
+                "y": {
+                    "type": "number"
+                },
+                "width": {
+                    "type": "number"
+                },
+                "height": {
+                    "type": "number"
+                }
+            }
+        },
+        "opacity": {
+            "type": "object",
+            "properties": {
+                "opacity": {
+                    "type": "number",
+                    "minumum": 0,
+                    "maximum": 1
+                }
+            }
+        },
+        "fade": {
+            "type": "object",
+            "properties": {
+                "opacity": {
+                    "type": "number",
+                    "minumum": 0,
+                    "maximum": 1
+                }
+            }
+        },
+        "sepia" : {
+            "type": "boolean"
         }
     },
     "additionalProperties": false

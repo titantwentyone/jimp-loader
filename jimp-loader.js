@@ -7,6 +7,7 @@ const schema = require("./schema.json");
 module.exports = function(source)
 {
     const options = getOptions(this);
+    console.log(options);
 
     var cb = this.async();
     
@@ -36,6 +37,30 @@ module.exports = function(source)
             image = cover(options.cover, image);
             image.getBuffer(jimp.AUTO, cb);
         }
+
+        if(options.crop)
+        {
+            image = crop(options.crop, image);
+            image.getBuffer(jimp.AUTO, cb);
+        }
+
+        if(options.opacity)
+        {
+            image = opacity(options.opacity, image);
+            image.getBuffer(jimp.AUTO, cb);
+        }
+
+        if(options.fade)
+        {
+            image = fade(options.fade, image);
+            image.getBuffer(jimp.AUTO, cb);
+        }
+
+        if(options.sepia)
+        {
+            image = sepia(image);
+            image.getBuffer(jimp.AUTO, cb);
+        }
     }).
     then(image => {
 
@@ -45,6 +70,7 @@ module.exports = function(source)
     })
     .catch(err => {
         console.log(err);
+        return cb(err);
     });
     
 }
@@ -141,4 +167,46 @@ function cover(options, image)
 
         return image;
     }
+}
+
+function crop(options, image)
+{
+    console.log("cropping");
+    if((options.x || options.x === 0) && (options.y || options.y === 0) && options.width && options.height)
+    {
+        image.crop(options.x, options.y, options.width, options.height);
+
+        return image;
+    }
+}
+
+function opacity(options, image)
+{
+    console.log("transparency");
+    if(options.opacity || options.opacity === 0)
+    {
+        image.opacity(options.opacity);
+
+        return image;
+    }
+}
+
+function fade(options, image)
+{
+    console.log("fading");
+    if(options.opacity || options.opacity === 0)
+    {
+        image.fade(options.opacity);
+
+        return image;
+    }
+}
+
+function sepia(image)
+{
+    console.log("sepia");
+    
+    image.sepia();
+
+    return image;
 }
