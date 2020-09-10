@@ -7,5 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Tim Smith",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "jimp": "^0.16.1",
+    "loader-utils": "^2.0.0",
+    "schema-utils": "^2.7.1"
+  }
 }

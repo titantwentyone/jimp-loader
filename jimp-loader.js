@@ -174,7 +174,46 @@ function crop(options, image)
     // console.log("cropping");
     if((options.x || options.x === 0) && (options.y || options.y === 0) && options.width && options.height)
     {
-        image.crop(options.x, options.y, options.width, options.height);
+        if(options.alignment)
+        {
+            switch(options.alignment.vertical)
+            {
+                case 'top':
+                default:
+                    var y = 0;
+                break;
+
+                case 'middle':
+                    var y = (image.bitmap.height/2) - (options.height/2);
+                break;
+
+                case 'bottom':
+                    var y = image.bitmap.height - options.height;
+                break;
+            }
+
+            switch(options.alignment.horizontal)
+            {
+                case 'left':
+                default:
+                    var x = 0;
+                break;
+
+                case 'center':
+                    var x = (image.bitmap.width/2) - (options.width/2);
+                break;
+                
+                case 'right':
+                    var x = image.bitmap.width - options.width;
+                break;
+            }
+
+            image.crop(x, y, options.width, options.height);
+        }
+        else
+        {
+            image.crop(options.x, options.y, options.width, options.height);
+        }
 
         return image;
     }

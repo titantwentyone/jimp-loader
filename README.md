@@ -73,6 +73,28 @@ For horizontal and vertical alignment, use JIMP constants at https://github.com/
         }
     }
     ...
+
+You can also align the crop:
+
+    ...
+    test: /\.jpg$/,
+    use: {
+        loader: 'jimp-loader',
+        options: {
+            crop: {
+                x: 0,
+                y: 0,
+                width: 300
+                height: 200,
+                alignment: {
+                    vertical: 'middle', // 'top','middle' or 'bottom'
+                    horizontal: 'center' // 'left', 'center' or 'right'
+                }
+            }
+        }
+    }
+    ...
+
 ### Opacity
 
     ...
